@@ -6,5 +6,6 @@ from extensions import db
 from src.app import prod_app
 from src.book import *
 from src.users import *
+from src.utils import *
 
 db.create_all(app=prod_app())

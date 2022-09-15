@@ -1,6 +1,5 @@
 import os
 import sys
-from email.policy import strict
 
 sys.path.append(os.getcwd())
 from sqlalchemy import Column, ForeignKey, Integer, String
@@ -41,7 +40,7 @@ class Ejemplar(db.Model):
 class EjemplarTransaction(db.Model):
     __tablename__ = "ejemplar_transaccion"
     id = Column(Integer, primary_key=True)
-    transaccion = Column(Integer, ForeignKey("transaction.id"))
+    transaccion = Column(Integer, ForeignKey("transactions.id"))
     ejemplar = Column(Integer, ForeignKey("ejemplar.id"))
 
 
