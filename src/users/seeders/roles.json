@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "admin",
+        "permissions": [
+            2,
+            3,
+            6
+        ]
+    },
+    {
+        "id": 2,
+        "name": "root",
+        "permissions": [
+            1,
+            2,
+            3,
+            6
+        ]
+    },
+    {
+        "id": 3,
+        "name": "user",
+        "permissions": [
+            3,
+            4,
+            5
+        ]
+    }
+]

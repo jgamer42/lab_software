@@ -19,5 +19,5 @@ class Card(db.Model):
     __tablename__ = "card"
     id = Column(Integer, primary_key=True)
     amount = Column(Integer)
-    owner = Column(Integer, ForeignKey("user.id"))
+    owner = Column(Integer, ForeignKey("app_users.id"))
     name = Column(String(30))

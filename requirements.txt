@@ -9,6 +9,7 @@ coverage==6.4.3
 distlib==0.3.5
 filelock==3.8.0
 Flask==2.2.2
+Flask-Login==0.6.2
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.2
 identify==2.5.3

@@ -1,14 +1,15 @@
 import os
 import sys
 
-sys.path.append(os.getcwd())
+from flask_login import UserMixin
 from sqlalchemy import Column, ForeignKey, Integer, String
 
+sys.path.append(os.getcwd())
 from extensions import db
 
 
-class User(db.Model):
-    __tablename__ = "user"
+class User(UserMixin, db.Model):
+    __tablename__ = "app_users"
     id = Column(Integer, primary_key=True)
     name = Column(String(30))
     last_name = Column(String(30))

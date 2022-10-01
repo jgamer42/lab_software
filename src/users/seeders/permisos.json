@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "CREATE_ADMIN_USER",
+        "description": "This permission allows to create admin users"
+    },
+    {
+        "id": 2,
+        "name": "CRUD_BOOKS",
+        "description": "Allows all actions related to managment of the book"
+    },
+    {
+        "id": 3,
+        "name": "UPDATE_USER_INFORMATION",
+        "description": "This permission allows to update password informatio"
+    },
+    {
+        "id": 4,
+        "name": "BUY_BOOK",
+        "description": "This permission allows to buys books"
+    },
+    {
+        "id": 5,
+        "name": "ASK_DEVOLUTION",
+        "description": "This permission allows to ask for a book devolution"
+    },
+    {
+        "id": 6,
+        "name": "APROVE_DEVOLUTION",
+        "description": "This permission allows to approve asked devolutions"
+    }
+]

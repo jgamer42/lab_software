@@ -7,7 +7,6 @@ repos:
     -   id: trailing-whitespace
     -   id: check-added-large-files
     -   id: check-json
-    -   id: pretty-format-json
     -   id: detect-aws-credentials
     -   id: requirements-txt-fixer
 -   repo: https://github.com/pre-commit/mirrors-mypy

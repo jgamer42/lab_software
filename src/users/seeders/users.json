@@ -1,0 +1,38 @@
+[
+    {
+        "name": "usuario_rot",
+        "last_name": "",
+        "birth_date": "",
+        "gender": "",
+        "email": "",
+        "user": "usuario_rot",
+        "password": "clave123",
+        "role": 2,
+        "messaging_addres": "",
+        "birth_place": ""
+    },
+    {
+        "name": "usuario_admin",
+        "last_name": "",
+        "birth_date": "",
+        "gender": "",
+        "email": "",
+        "user": "usuario_admin",
+        "password": "clave123",
+        "role": 1,
+        "messaging_addres": "",
+        "birth_place": ""
+    },
+    {
+        "name": "usuario",
+        "last_name": "",
+        "birth_date": "",
+        "gender": "",
+        "email": "",
+        "user": "usuario",
+        "password": "clave123",
+        "role": 3,
+        "messaging_addres": "",
+        "birth_place": ""
+    }
+]
