@@ -6,7 +6,7 @@ from flask import Flask
 from flask_login import LoginManager
 
 from extensions import db
-from src.users.models import User
+from src.users.controllers.user import User
 from src.users.routes import users_blueprint
 
 
@@ -22,7 +22,7 @@ def prod_app() -> Flask:
         "SQLALCHEMY_DATABASE_URI"
     ] = f"postgresql://{db_user}:{db_key}@{db_host}/{db_name}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config["PERMANENT_SESSION_LIFETIME"] = datetime.timedelta(seconds=5)
+    app.config["PERMANENT_SESSION_LIFETIME"] = datetime.timedelta(minutes=5)
     app.register_blueprint(users_blueprint)
 
     login_manager = LoginManager()
@@ -30,7 +30,7 @@ def prod_app() -> Flask:
 
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(user_id)
+        return User.build(user_id)
 
     db.init_app(app)
     return app
