@@ -28,6 +28,23 @@ def login():
 
 @users_blueprint.route("/logged")
 @login_required
-def test_login():
+def logout():
     logout_user()
     return "logg out"
+
+
+@users_blueprint.route("/register", methods=["POST"])
+def register():
+    try:
+        new_user_data = request.json
+        registred = User.create(**new_user_data)
+        if registred:
+            user = User.login(new_user_data["user"], new_user_data["password"])
+            login_user(user, duration=datetime.timedelta(minutes=1))
+            session.permanent = True
+            return "succesfull register"
+        else:
+            return "we could not create your user try again"
+
+    except Exception as E:
+        return "wops something wrong"

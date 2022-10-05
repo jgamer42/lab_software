@@ -22,6 +22,15 @@ class User(UserMixin, db.Model):
     messaging_addres = Column(String(50))
     birth_place = Column(String(50))
 
+    @classmethod
+    def create(self, **kwargs):
+        try:
+            new_user = User(**kwargs)
+            db.session.add(new_user)
+            db.session.commit()
+        except:
+            print("we could insert the new user")
+
 
 class Role(db.Model):
     __tablename__ = "role"

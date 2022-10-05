@@ -1,0 +1,11 @@
+{
+    "name":{"type":"string"},
+    "last_name":{"type":"string"},
+    "birth_date":{"type":"string"},
+    "gender":{"type":"string"},
+    "email":{"type":"string"},
+    "user":{"type":"string"},
+    "password":{"type":"string"},
+    "messaging_addres":{"type":"string"},
+    "birth_place":{"type":"string"}
+}
