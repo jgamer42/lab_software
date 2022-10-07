@@ -22,7 +22,7 @@ def login():
             return make_response(
                 jsonify({"message": "wrong password or username"}), 203
             )
-    except:
+    except Exception as e:
         return make_response(jsonify({"message": "something was wrong"}), 500)
 
 

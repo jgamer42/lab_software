@@ -4,6 +4,7 @@ import json
 import os
 
 from cerberus import Validator
+from flask_login import current_user
 
 from src.users.models import User as UserModel
 
@@ -53,3 +54,6 @@ class User:
         decoded_password: bytes = base64.b64decode(password.encode("utf-8"))
         hashed_password: str = hashlib.md5(decoded_password).hexdigest()
         return hashed_password
+
+    def get_info(self):
+        return self.manager.is_anonymous()
