@@ -6,6 +6,7 @@ from flask import Flask
 from flask_login import LoginManager
 
 from extensions import db
+from src.book.routes import books_blueprint
 from src.users.controllers.user import User
 from src.users.routes import users_blueprint
 
@@ -24,6 +25,7 @@ def prod_app() -> Flask:
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["PERMANENT_SESSION_LIFETIME"] = datetime.timedelta(minutes=5)
     app.register_blueprint(users_blueprint)
+    app.register_blueprint(books_blueprint, url_prefix="/book")
 
     login_manager = LoginManager()
     login_manager.init_app(app)
