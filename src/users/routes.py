@@ -30,7 +30,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return "logg out"
+    return make_response(jsonify({"message": "logged out"}), 200)
 
 
 @users_blueprint.route("/register", methods=["POST"])
