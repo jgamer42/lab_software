@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask
+from flask_cors import CORS
 from flask_login import LoginManager
 
 from extensions import db
@@ -14,6 +15,11 @@ from src.users.routes import users_blueprint
 def prod_app() -> Flask:
     load_dotenv()
     app: Flask = Flask(__name__)
+    CORS(
+        app,
+        origins=["http://127.0.0.1:8080", "http://localhost:8080"],
+        supports_credentials=True,
+    )
     app.secret_key = os.getenv("SECRET_KEY", "")
     db_user: str = os.getenv("DB_USER", "")
     db_key: str = os.getenv("DB_KEY", "")
