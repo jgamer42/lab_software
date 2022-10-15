@@ -2,20 +2,24 @@ import base64
 import hashlib
 import json
 import os
+from typing import Union
 
 from cerberus import Validator
 from flask_login import current_user
 
+from src.users.controllers.auth import AuthHelper
 from src.users.models import User as UserModel
 
 
 class User:
     manager = UserModel
     is_active = None
-    validator_file = open(os.getcwd() + "/src/users/validators/user.json", "r")
+    validator_file = open(os.getcwd() + "/src/users/validator.json", "r")
     schema = json.load(validator_file)
     validator_file.close()
     validator = Validator(schema)
+    auth_helper = None
+    data = None
 
     def __init__(self):
         raise Exception("Constructor blocked")
@@ -29,8 +33,11 @@ class User:
 
     @classmethod
     def build(self, id: int):
-        if self.manager.query.get(id) is not None:
+        data: Union[UserModel, None] = self.manager.query.get(id)
+        if data is not None:
+            self.data = data
             self.is_active = True
+            self.auth_helper = AuthHelper(data.role)
         else:
             self.is_active = False
         return self
@@ -39,7 +46,10 @@ class User:
     def create(self, **kwargs):
         if self.validator.validate(kwargs):
             kwargs["password"] = self.handle_password(kwargs["password"])
-            kwargs["role"] = 1
+            if current_user.auth_helper.can_create_admin():
+                kwargs["role"] = 1
+            else:
+                kwargs["role"] = 3
             self.manager.create(**kwargs)
             return True
         else:

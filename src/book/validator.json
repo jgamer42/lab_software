@@ -1,0 +1,27 @@
+{
+    "author": {
+        "type": "string",
+        "required":true
+    },
+    "name": {
+        "type": "string",
+        "required":true
+    },
+    "publication_date": {
+        "type": "string",
+        "required": true
+    },
+    "ejemplar": {
+        "type": "dict",
+        "required": true,
+        "schema":{
+            "editorial":{"type":"string","required": true},
+            "number_pages":{"type":"integer","required": true},
+            "price":{"type":"integer","required": true}
+        }
+    },
+    "topics":{
+        "type":"list",
+        "required": true
+    }
+}
