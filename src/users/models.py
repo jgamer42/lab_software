@@ -22,6 +22,21 @@ class User(UserMixin, db.Model):
     messaging_addres = Column(String(50))
     birth_place = Column(String(50))
 
+    def serialize(self):
+        output = {}
+        fields = [
+            "name",
+            "last_name",
+            "gender",
+            "email",
+            "user",
+            "messaging_addres",
+            "birth_place",
+        ]
+        for field in fields:
+            output[field] = getattr(self, field)
+        return output
+
     @classmethod
     def create(self, **kwargs):
         try:

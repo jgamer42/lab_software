@@ -25,11 +25,34 @@ class User:
         raise Exception("Constructor blocked")
 
     @classmethod
+    def serialize(self):
+        relevant_fields = ["auth_helper"]
+        output = {}
+        elements = dir(self)
+        clean_elements = [
+            element
+            for element in elements
+            if "__" not in element and element in relevant_fields
+        ]
+        for element in clean_elements:
+            a = getattr(self, element)
+            output[element] = a.serialize()
+        return output
+
+    def get_info(self):
+        return self.manager.is_anonymous()
+
+    @classmethod
     def login(self, username: str, password: str) -> object:
         hashed_password = self.handle_password(password)
-        return self.manager.query.filter_by(
+        db_data = self.manager.query.filter_by(
             password=hashed_password, user=username
         ).first()
+
+        complemented_data = self.build(db_data.id)
+        complemented_data = complemented_data.serialize()
+        complemented_data.update(db_data.serialize())
+        return db_data, complemented_data
 
     @classmethod
     def build(self, id: int):
@@ -46,7 +69,10 @@ class User:
     def create(self, **kwargs):
         if self.validator.validate(kwargs):
             kwargs["password"] = self.handle_password(kwargs["password"])
-            if current_user.auth_helper.can_create_admin():
+            if (
+                hasattr(current_user, "auth_helper")
+                and current_user.auth_helper.can_create_admin()
+            ):
                 kwargs["role"] = 1
             else:
                 kwargs["role"] = 3
@@ -64,6 +90,3 @@ class User:
         decoded_password: bytes = base64.b64decode(password.encode("utf-8"))
         hashed_password: str = hashlib.md5(decoded_password).hexdigest()
         return hashed_password
-
-    def get_info(self):
-        return self.manager.is_anonymous()

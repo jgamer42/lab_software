@@ -29,3 +29,6 @@ class AuthHelper:
             return True
         else:
             return False
+
+    def serialize(self) -> list:
+        return self.permissions

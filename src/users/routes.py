@@ -11,11 +11,13 @@ users_blueprint = Blueprint("users_blueprint", __name__)
 @users_blueprint.route("/login", methods=["POST"])
 def login():
     data = request.json
-    user = User.login(data["username"], data["password"])
-    if user is not None:
-        login_user(user, duration=datetime.timedelta(minutes=1))
+    user_to_login, user_information = User.login(data["username"], data["password"])
+    if user_to_login is not None:
+        login_user(user_to_login, duration=datetime.timedelta(minutes=1))
         session.permanent = True
-        return make_response(jsonify({"message": "succesfull login"}), 200)
+        return make_response(
+            jsonify({"message": "succesfull login", "data": user_information}), 200
+        )
     else:
         return make_response(jsonify({"message": "wrong password or username"}), 403)
 
@@ -32,10 +34,14 @@ def register():
     new_user_data = request.json
     registred = User.create(**new_user_data)
     if registred:
-        user = User.login(new_user_data["user"], new_user_data["password"])
-        login_user(user, duration=datetime.timedelta(minutes=1))
+        user_to_login, user_information = User.login(
+            new_user_data["user"], new_user_data["password"]
+        )
+        login_user(user_to_login, duration=datetime.timedelta(minutes=1))
         session.permanent = True
-        return make_response(jsonify({"message": "succesfull register"}), 201)
+        return make_response(
+            jsonify({"message": "succesfull register", "data": user_information}), 201
+        )
     else:
         return make_response(
             jsonify({"message": "we not could create your user try again"}), 400
