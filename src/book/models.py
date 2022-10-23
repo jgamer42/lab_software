@@ -10,7 +10,7 @@ from extensions import db
 class Autor(db.Model):
     __tablename__ = "autor"
     id = Column(Integer, primary_key=True)
-    name = Column(String(30))
+    name = Column(String(100))
 
     @classmethod
     def create(self, **kwargs):
@@ -25,7 +25,7 @@ class Autor(db.Model):
 class Book(db.Model):
     __tablename__ = "book"
     id = Column(Integer, primary_key=True)
-    name = Column(String(30))
+    name = Column(String(100))
     date_publication = Column(String(30))
 
     @classmethod
@@ -63,6 +63,7 @@ class Ejemplar(db.Model):
     price = Column(Integer)
     book = Column(Integer, ForeignKey("book.id"))
     image = Column(String(50))
+    cuantity = Column(Integer)
 
     @classmethod
     def create(self, **kwargs):

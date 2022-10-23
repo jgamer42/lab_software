@@ -5,6 +5,7 @@ import sys
 
 sys.path.append(os.getcwd())
 from extensions import db
+from src.book import models as book_models
 from src.users import models as user_models
 from src.utils import context
 
@@ -73,4 +74,72 @@ def seed_users() -> None:
             continue
 
 
+@context.emulate_app_context
+def seed_autors() -> None:
+    """Method used to insert the permissions registred on the file roles.json on seeders"""
+    seeders_path: str = f"{os.getcwd()}/src/book/seeders"
+    seeder_file = open(seeders_path + "/autors.json", "r")
+    seeder_users: dict = json.load(seeder_file)
+    for user in seeder_users:
+        try:
+            new_role = book_models.Autor(**user)
+            db.session.add(new_role)
+            db.session.commit()
+        except Exception as Error:
+            print(f"fails with {user}")
+            continue
+
+
+@context.emulate_app_context
+def seed_simple_books() -> None:
+    """Method used to insert the permissions registred on the file roles.json on seeders"""
+    seeders_path: str = f"{os.getcwd()}/src/book/seeders"
+    seeder_file = open(seeders_path + "/books.json", "r")
+    seeder_users: dict = json.load(seeder_file)
+    for user in seeder_users:
+        try:
+            new_role = book_models.Book(**user)
+            db.session.add(new_role)
+            db.session.commit()
+        except Exception as Error:
+            print(f"fails with {user}")
+            continue
+
+
+@context.emulate_app_context
+def seed_books_autor() -> None:
+    """Method used to insert the permissions registred on the file roles.json on seeders"""
+    seeders_path: str = f"{os.getcwd()}/src/book/seeders"
+    seeder_file = open(seeders_path + "/book_autor.json", "r")
+    seeder_users: dict = json.load(seeder_file)
+    for user in seeder_users:
+        try:
+            new_role = book_models.BookAutor(**user)
+            db.session.add(new_role)
+            db.session.commit()
+        except Exception as Error:
+            print(f"fails with {user}")
+            continue
+
+
+@context.emulate_app_context
+def seed_ejemplares() -> None:
+    """Method used to insert the permissions registred on the file roles.json on seeders"""
+    seeders_path: str = f"{os.getcwd()}/src/book/seeders"
+    seeder_file = open(seeders_path + "/ejemplares.json", "r")
+    seeder_users: dict = json.load(seeder_file)
+    for user in seeder_users:
+        try:
+            new_role = book_models.Ejemplar(**user)
+            db.session.add(new_role)
+            db.session.commit()
+        except Exception as Error:
+            print(f"fails with {user}")
+            continue
+
+
 seed_users()
+seed_autors()
+seed_simple_books()
+seed_books_autor()
+seed_ejemplares()

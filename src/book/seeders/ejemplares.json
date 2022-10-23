@@ -1,0 +1,56 @@
+[
+    {
+        "editorial": "deBolsillo",
+        "number_pages": 100,
+        "status": "AVAILABLE",
+        "price": 500,
+        "book": 1,
+        "image": "",
+        "cuantity": 10
+    },
+    {
+        "editorial": "alfawara",
+        "number_pages": 100,
+        "status": "AVAILABLE",
+        "price": 500,
+        "book": 1,
+        "image": "",
+        "cuantity": 10
+    },
+    {
+        "editorial": "penguin",
+        "number_pages": 100,
+        "status": "AVAILABLE",
+        "price": 500,
+        "book": 1,
+        "image": "",
+        "cuantity": 10
+    },
+    {
+        "editorial": "alfawara",
+        "number_pages": 300,
+        "status": "OUT-OF-STOCK",
+        "price": 500,
+        "book": 2,
+        "image": "",
+        "cuantity": 0
+    },
+    {
+        "editorial": "panini",
+        "number_pages": 300,
+        "status": "AVAILABLE",
+        "price": 500,
+        "book": 2,
+        "image": "",
+        "cuantity": 1
+    },
+    {
+        "editorial": "alfawara",
+        "number_pages": 300,
+        "status": "AVAILABLE",
+        "price": 500,
+        "book": 3,
+        "image": "",
+        "cuantity": 10
+    }
+]
