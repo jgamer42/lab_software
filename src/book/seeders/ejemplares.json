@@ -5,7 +5,7 @@
         "status": "AVAILABLE",
         "price": 500,
         "book": 1,
-        "image": "",
+        "image": "img_test.png",
         "cuantity": 10
     },
     {
@@ -14,7 +14,7 @@
         "status": "AVAILABLE",
         "price": 500,
         "book": 1,
-        "image": "",
+        "image": "img_test.png",
         "cuantity": 10
     },
     {
@@ -23,7 +23,7 @@
         "status": "AVAILABLE",
         "price": 500,
         "book": 1,
-        "image": "",
+        "image": "img_test.png",
         "cuantity": 10
     },
     {
@@ -32,7 +32,7 @@
         "status": "OUT-OF-STOCK",
         "price": 500,
         "book": 2,
-        "image": "",
+        "image": "img_test.png",
         "cuantity": 0
     },
     {
@@ -41,7 +41,7 @@
         "status": "AVAILABLE",
         "price": 500,
         "book": 2,
-        "image": "",
+        "image": "img_test.png",
         "cuantity": 1
     },
     {
@@ -50,7 +50,7 @@
         "status": "AVAILABLE",
         "price": 500,
         "book": 3,
-        "image": "",
+        "image": "img_test.png",
         "cuantity": 10
     }
 ]

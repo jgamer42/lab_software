@@ -130,6 +130,9 @@ def seed_ejemplares() -> None:
     seeder_users: dict = json.load(seeder_file)
     for user in seeder_users:
         try:
+            image = open(f"{seeders_path}/{user['image']}", "rb")
+            user["image"] = image.read()
+            image.close()
             new_role = book_models.Ejemplar(**user)
             db.session.add(new_role)
             db.session.commit()

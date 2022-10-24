@@ -2,7 +2,7 @@ import os
 import sys
 
 sys.path.append(os.getcwd())
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Text
 
 from extensions import db
 
@@ -59,10 +59,10 @@ class Ejemplar(db.Model):
     id = Column(Integer, primary_key=True)
     editorial = Column(String(30))
     number_pages = Column(Integer)
-    status = Column(String(10))
+    status = Column(String(30))
     price = Column(Integer)
     book = Column(Integer, ForeignKey("book.id"))
-    image = Column(String(50))
+    image = Column(Text)
     cuantity = Column(Integer)
 
     @classmethod

@@ -19,6 +19,8 @@ def prod_app() -> Flask:
         app,
         origins=["http://127.0.0.1:8080", "http://localhost:8080"],
         supports_credentials=True,
+        allow_headers="*",
+        expose_headers="*",
     )
     app.secret_key = os.getenv("SECRET_KEY", "")
     db_user: str = os.getenv("DB_USER", "")
