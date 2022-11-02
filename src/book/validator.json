@@ -1,5 +1,13 @@
 {
-    "author": {
+    "sinopsis": {
+        "type": "string",
+        "required":true
+    },
+    "isxn": {
+        "type": "string",
+        "required":true
+    },
+    "autor": {
         "type": "string",
         "required":true
     },
@@ -7,21 +15,36 @@
         "type": "string",
         "required":true
     },
-    "publication_date": {
+    "editorial": {
         "type": "string",
-        "required": true
+        "required":true
     },
-    "ejemplar": {
-        "type": "dict",
-        "required": true,
-        "schema":{
-            "editorial":{"type":"string","required": true},
-            "number_pages":{"type":"integer","required": true},
-            "price":{"type":"integer","required": true}
-        }
+    "date": {
+        "type": "string",
+        "required":true
     },
-    "topics":{
-        "type":"list",
-        "required": true
+    "language": {
+        "type": "string",
+        "required":true
+    },
+    "num_pag": {
+        "type": "integer",
+        "required":true
+    },
+    "size": {
+        "type": "string",
+        "required":true
+    },
+    "acabado": {
+        "type": "string",
+        "required":true
+    },
+    "number": {
+        "type": "integer",
+        "required":true
+    },
+    "price": {
+        "type": "string",
+        "required":true
     }
 }

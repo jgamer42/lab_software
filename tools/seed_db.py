@@ -143,6 +143,6 @@ def seed_ejemplares() -> None:
 
 seed_users()
 seed_autors()
-seed_simple_books()
-seed_books_autor()
-seed_ejemplares()
+# seed_simple_books()
+# seed_books_autor()
+# seed_ejemplares()
