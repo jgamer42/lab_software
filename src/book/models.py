@@ -117,12 +117,9 @@ class Ejemplar(db.Model):
 
     @classmethod
     def create(self, **kwargs):
-        try:
-            new_ejemplar = Ejemplar(**kwargs)
-            db.session.add(new_ejemplar)
-            db.session.commit()
-        except:
-            print(f"we could insert the new {self.__tablename__}")
+        new_ejemplar = Ejemplar(**kwargs)
+        db.session.add(new_ejemplar)
+        db.session.commit()
 
 
 class EjemplarTransaction(db.Model):
