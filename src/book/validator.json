@@ -44,7 +44,19 @@
         "required":true
     },
     "price": {
-        "type": "integer",
+        "type": "string",
+        "required":true
+    },
+    "image":{
+        "type":"string",
+        "required":true
+    },
+    "weigh":{
+        "type":"string",
+        "required":true
+    },
+    "topics":{
+        "type":"list",
         "required":true
     }
 }
