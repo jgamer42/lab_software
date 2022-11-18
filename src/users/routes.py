@@ -13,7 +13,7 @@ def login():
     data = request.json
     user_to_login, user_information = User.login(data["username"], data["password"])
     if user_to_login is not None:
-        login_user(user_to_login, duration=datetime.timedelta(minutes=1))
+        login_user(user_to_login, duration=datetime.timedelta(hours=1))
         session.permanent = True
         return make_response(
             jsonify({"message": "succesfull login", "data": user_information}), 200

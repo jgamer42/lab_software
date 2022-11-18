@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     last_name = Column(String(30))
     birth_date = Column(String(30))
     gender = Column(String(30))
-    email = Column(String(30))
+    email = Column(String(30), unique=True)
     user = Column(String(30))
     password = Column(String(100))
     role = Column(Integer, ForeignKey("role.id", ondelete="CASCADE"))

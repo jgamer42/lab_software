@@ -52,7 +52,7 @@
         "required":true
     },
     "weigh":{
-        "type":"string",
+        "type":"integer",
         "required":true
     },
     "topics":{
