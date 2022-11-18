@@ -20,7 +20,7 @@ class Autor(db.Model):
             db.session.add(new_autor)
             db.session.commit()
             return new_autor
-        except:
+        except Exception as E:
             print(f"we could insert the new {self.__tablename__}")
 
 
