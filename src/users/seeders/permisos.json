@@ -28,5 +28,11 @@
         "id": 6,
         "name": "APROVE_DEVOLUTION",
         "description": "This permission allows to approve asked devolutions"
+    },
+    {
+        "id": 7,
+        "name": "CREATE_STORE",
+        "description": "This permit allows you to create physical stores"
     }
+
 ]
