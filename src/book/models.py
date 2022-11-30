@@ -1,9 +1,8 @@
-import datetime
 import os
 import sys
 
 sys.path.append(os.getcwd())
-from sqlalchemy import Column, ForeignKey, Integer, String, Text
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, update
 
 from extensions import db
 
@@ -22,6 +21,7 @@ class Autor(db.Model):
             return new_autor
         except Exception as E:
             print(f"we could insert the new {self.__tablename__}")
+            return None
 
 
 class Book(db.Model):
@@ -33,21 +33,8 @@ class Book(db.Model):
     sinopsis = Column(Text)
 
     @classmethod
-    def get_newest(self):
-        try:
-            output = Ejemplar.query()
-            print(output)
-        except:
-            print(f"we could not insert the new {self.__tablename__}")
-
-    @classmethod
     def create(self, **kwargs):
         try:
-            autor = Autor.query.filter_by(name=kwargs["autor"])
-            if list(autor) == []:
-                autor = Autor.create(name=kwargs["autor"])
-            else:
-                autor = autor.first()
             sanity_check = self.query.filter_by(name=kwargs["name"])
             if list(sanity_check) == []:
                 book = Book(
@@ -58,30 +45,20 @@ class Book(db.Model):
                 )
                 db.session.add(book)
                 db.session.commit()
-                book = list(Book.query.all())[-1]
-                book_autor = BookAutor(book=book.id, autor=autor.id)
-                db.session.add(book_autor)
-                db.session.commit()
             else:
                 book = sanity_check.first()
-            ejemplar = Ejemplar.query.filter_by(
-                editorial=kwargs["editorial"], book=book.id
-            )
-            if list(ejemplar) == []:
-                ejemplar = Ejemplar.create(
-                    editorial=kwargs["editorial"],
-                    book=book.id,
-                    price=kwargs["price"],
-                    cuantity=kwargs["number"],
-                    status="AVAILABLE",
-                    size=kwargs["size"],
-                    acabado=kwargs["acabado"],
-                    image=kwargs["image"],
-                    created_at=str(datetime.datetime.now()),
-                    stocked_at=str(datetime.datetime.now()),
-                )
+            return book
         except Exception as e:
             print(f"we could not insert the new {self.__tablename__}")
+
+    @classmethod
+    def update(self, id: int, new_data: dict):
+        # update
+        target = update(self)
+        target = target.values(new_data)
+        target = target.where(self.id == id)
+        db.session.execute(target)
+        db.session.commit()
 
 
 class BookAutor(db.Model):
@@ -99,6 +76,15 @@ class BookAutor(db.Model):
         except:
             print(f"we could insert the new {self.__tablename__}")
 
+    @classmethod
+    def update(self, id: int, new_data: dict):
+        # update
+        target = update(self)
+        target = target.values(new_data)
+        target = target.where(self.id == id)
+        db.session.execute(target)
+        db.session.commit()
+
 
 class Ejemplar(db.Model):
     __tablename__ = "ejemplar"
@@ -114,11 +100,36 @@ class Ejemplar(db.Model):
     size = Column(String(50))
     created_at = Column(String(100))
     stocked_at = Column(String(100))
+    language = Column(String(100))
+    weight = Column(String(300))
+
+    @classmethod
+    def get_newest(self):
+        try:
+            output = self.query()
+            print(output)
+        except:
+            print(f"we could not insert the new {self.__tablename__}")
 
     @classmethod
     def create(self, **kwargs):
-        new_ejemplar = Ejemplar(**kwargs)
+        new_ejemplar = self(**kwargs)
         db.session.add(new_ejemplar)
+        db.session.commit()
+
+    @classmethod
+    def update(self, id: int, new_data: dict):
+        # update
+        target = update(self)
+        target = target.values(new_data)
+        target = target.where(self.id == id)
+        db.session.execute(target)
+        db.session.commit()
+
+    @classmethod
+    def delete(self, id: int):
+        row_to_delete = self.query.filter(self.id == id)
+        row_to_delete.delete()
         db.session.commit()
 
 
