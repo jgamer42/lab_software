@@ -3,6 +3,7 @@ import os
 
 from cerberus import Validator
 
+from extensions import db
 from src.book import models as BookModels
 
 
@@ -78,12 +79,19 @@ class BookController:
     def get(self, id: int):
         data = BookModels.Ejemplar.query.filter_by(id=id).first()
         book = BookModels.Book.query.filter_by(id=data.book).first()
+        autor = (
+            BookModels.Autor.query.join(
+                BookModels.BookAutor, BookModels.BookAutor.autor == BookModels.Autor.id
+            )
+            .filter(BookModels.BookAutor.book == book.id)
+            .first()
+        )
         output = {
             "id": data.id,
             "img": data.image,
             "price": data.price,
             "name": book.name,
-            "autor": "autor",
+            "autor": autor.name,
             "editorial": data.editorial,
             "number_pages": data.number_pages,
             "quantity": data.cuantity,

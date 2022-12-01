@@ -29,6 +29,20 @@ def logout():
     return make_response(jsonify({"message": "logged out"}), 200)
 
 
+@users_blueprint.route("/user/<id>", methods=["GET"])
+@login_required
+def info(id):
+    user_information = User.get_user_info(id)
+    return make_response(jsonify({"data": user_information}), 200)
+
+
+@users_blueprint.route("/update/<id>", methods=["PUT"])
+@login_required
+def update(id):
+    User.update_data(id, request.json)
+    return make_response(jsonify({"message": "succesfull update"}), 200)
+
+
 @users_blueprint.route("/register", methods=["POST"])
 def register():
     new_user_data = request.json

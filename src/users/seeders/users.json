@@ -1,7 +1,7 @@
 [
     {
+        "id":"1",
         "name": "usuario_root",
-        "last_name": "",
         "birth_date": "",
         "gender": "",
         "email": "",
@@ -9,11 +9,12 @@
         "password": "clave123",
         "role": 2,
         "messaging_addres": "",
-        "birth_place": ""
+        "birth_place": "",
+        "phone_number":""
     },
     {
+        "id": "2",
         "name": "usuario_admin",
-        "last_name": "",
         "birth_date": "",
         "gender": "",
         "email": "email1",
@@ -21,11 +22,12 @@
         "password": "clave123",
         "role": 1,
         "messaging_addres": "",
-        "birth_place": ""
+        "birth_place": "",
+        "phone_number": ""
     },
     {
+        "id":"3",
         "name": "usuario",
-        "last_name": "",
         "birth_date": "",
         "gender": "",
         "email": "email2",
@@ -33,6 +35,7 @@
         "password": "clave123",
         "role": 3,
         "messaging_addres": "",
-        "birth_place": ""
+        "birth_place": "",
+        "phone_number": ""
     }
 ]

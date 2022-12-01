@@ -119,12 +119,15 @@ class Ejemplar(db.Model):
 
     @classmethod
     def update(self, id: int, new_data: dict):
-        # update
-        target = update(self)
-        target = target.values(new_data)
-        target = target.where(self.id == id)
-        db.session.execute(target)
-        db.session.commit()
+        try:
+            target = update(self)
+            target = target.values(new_data)
+            target = target.where(self.id == id)
+            db.session.execute(target)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            print("fallo actualizando libro")
 
     @classmethod
     def delete(self, id: int):

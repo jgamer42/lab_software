@@ -25,6 +25,11 @@ class User:
         raise Exception("Constructor blocked")
 
     @classmethod
+    def update_data(self, id, new_user_data):
+        user_to_update = self.manager.query.filter_by(id=id).first()
+        user_to_update.update(id, new_user_data)
+
+    @classmethod
     def serialize(self):
         relevant_fields = ["auth_helper"]
         output = {}
@@ -41,6 +46,11 @@ class User:
 
     def get_info(self):
         return self.manager.is_anonymous()
+
+    @classmethod
+    def get_user_info(self, id: int):
+        db_data = self.manager.query.filter_by(id=id).first()
+        return db_data.serialize()
 
     @classmethod
     def login(self, username: str, password: str) -> object:
